@@ -62,6 +62,10 @@ Smart Meter Slave ID: 200
 
 ---
 
+# Configuration on Fronius inverter
+
+![config.png](config.png)
+
 # Installation
 
 Clone the repository:
@@ -246,10 +250,3 @@ If you find issues or want to add support for additional Fronius devices, feel f
 
 ---
 
-If you want, I can also help you add **3 things that make the repo look much more professional:**
-
-1. **Composer support (`composer.json`)**
-2. **Better project structure (`src/`)**
-3. **A small logo + badges for GitHub**
-
-Those **dramatically increase GitHub credibility** for open source libraries.
