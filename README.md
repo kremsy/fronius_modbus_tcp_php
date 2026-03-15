@@ -123,14 +123,18 @@ Example output:
 ```
 Array
 (
-    [maxPowerW] => 5000
-    [stateOfCharge] => 72
-    [reservePercent] => 10
-    [chargeLimitPercent] => 10000
-    [dischargeLimitPercent] => 10000
-    [batteryPower] => -1200
-    [chargeStatus] => discharging
+    [maxPowerW] => 4300
+    [stateOfCharge] => 92.92
+    [reservePercent] => 6
+    [chargeLimitPercent] => 100
+    [dischargeLimitPercent] => 100
+    [revertTimeout] => 0
+    [gridChargingEnabled] => 1
+    [controlMode] => 0
+    [batteryPower] => 860.8
+    [chargeStatus] => charging
 )
+
 ```
 
 ---
