@@ -1,10 +1,10 @@
 # Fronius Modbus TCP PHP
 
-![License](https://img.shields.io/github/license/YOUR_USERNAME/fronius-modbus-tcp-php)
+![License](https://img.shields.io/github/license/kremsy/fronius_modbus_tcp_php)
 ![PHP](https://img.shields.io/badge/php-%3E%3D7.4-blue)
-![GitHub stars](https://img.shields.io/github/stars/YOUR_USERNAME/fronius-modbus-tcp-php)
-![GitHub issues](https://img.shields.io/github/issues/YOUR_USERNAME/fronius-modbus-tcp-php)
-![Last commit](https://img.shields.io/github/last-commit/YOUR_USERNAME/fronius-modbus-tcp-php)
+![GitHub stars](https://img.shields.io/github/stars/kremsy/fronius_modbus_tcp_php)
+![GitHub issues](https://img.shields.io/github/issues/kremsy/fronius_modbus_tcp_php)
+![Last commit](https://img.shields.io/github/last-commit/kremsy/fronius_modbus_tcp_php)
 
 A lightweight PHP library for interacting with **Fronius inverters and smart meters via Modbus TCP**.
 
