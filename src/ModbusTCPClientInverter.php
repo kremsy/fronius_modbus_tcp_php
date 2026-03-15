@@ -95,9 +95,13 @@ class ModbusTCPClientInverter extends ModbusTCPClient
         $dcwSf = $this->readSingleRegister(self::REG_DCW_SF);
         $scaleBat = pow(10, self::signed16($dcwSf));
 
-        $status->batteryPower = $batPower * $scaleBat;
+        //$batVoltage = $this->readSingleRegister(40314) / 100; //TODO constants and dynamic scaling
+        //$batCurrent = $this->readSingleRegister(40313) / 1000;
+        //$status->batteryPower = -$batVoltage * $batCurrent;
 
+        $status->batteryPower = $batPower * $scaleBat;
         return $status;
+
     }
 
 
@@ -127,10 +131,10 @@ class ModbusTCPClientInverter extends ModbusTCPClient
         $this->write(self::REG_CHAGRISET, 1);
         usleep(200000);
 
-        $this->write(self::REG_OUTWRTE, 65536 - $pct);
+        $this->write(self::REG_OUTWRTE, 65536 - $pct);# - $pct); # Disallow discharging
         usleep(200000);
 
-        $this->write(self::REG_INWRTE, 10000);
+        $this->write(self::REG_INWRTE, $pct); # does it make sence to not take pct here?
         usleep(200000);
 
         $this->write(self::REG_STORCTL_MOD, 2);
@@ -154,7 +158,7 @@ class ModbusTCPClientInverter extends ModbusTCPClient
 
         $pct = self::wattsToPct($watts, $max);
 
-        $this->write(self::REG_INWRTE, 65536 - $pct);
+        $this->write(self::REG_INWRTE, 65536 - $pct); # Disallow Charging
         usleep(200000);
 
         $this->write(self::REG_OUTWRTE, $pct);
@@ -172,8 +176,15 @@ class ModbusTCPClientInverter extends ModbusTCPClient
      * @return void
      */
     public function autoMode() {
-
+        # Reset control mode and set limits back to 100%
         $this->write(self::REG_STORCTL_MOD, 0);
+
+        $this->write(self::REG_INWRTE, 10000); # Set to 100%
+        usleep(200000);
+
+        $this->write(self::REG_OUTWRTE, 10000); # Set to 100%
+        usleep(200000);
+
     }
 
 }

@@ -68,6 +68,7 @@ print_r($status->toArray());
  * Example:
  * $client->forceBatteryCharge(4000); // Charge with ~4kW
  */
+//$client->forceBatteryCharge(4000);
 
 /**
  * Restore automatic battery control mode.
@@ -104,7 +105,7 @@ $client->connect();
  */
 $power = $client->getRealPower();
 
-var_dump($power);
+print("Power primary Smartmeter: " . $power . "W\n");
 
 $client->close();
 
@@ -126,6 +127,6 @@ $client->connect();
  */
 $power = $client->getRealPower();
 
-var_dump($power);
+print("Power secondary Smartmeter: " . $power . "W\n");
 
 $client->close();
