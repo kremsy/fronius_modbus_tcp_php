@@ -1,0 +1,29 @@
+{
+  "name": "yourname/fronius-modbus-tcp-php",
+  "description": "Lightweight PHP library for interacting with Fronius inverters and smart meters via Modbus TCP.",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "fronius",
+    "modbus",
+    "modbus-tcp",
+    "solar",
+    "inverter",
+    "battery",
+    "energy"
+  ],
+  "authors": [
+    {
+      "name": "Your Name"
+    }
+  ],
+  "require": {
+    "php": ">=7.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "battery\\fronius_modbus_tcp_php\\": "src/"
+    }
+  },
+  "minimum-stability": "stable"
+}

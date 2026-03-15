@@ -1,6 +1,6 @@
 <?php
 
-namespace battery\fronius_modbus_tcp_php;
+namespace battery\fronius_modbus_tcp_php\src;
 
 /**
  * Represents the current battery state reported by a Fronius inverter.

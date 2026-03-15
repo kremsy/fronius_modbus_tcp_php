@@ -1,6 +1,6 @@
 <?php
 
-namespace battery\fronius_modbus_tcp_php;
+namespace battery\fronius_modbus_tcp_php\src;
 
 /**
  * Modbus client implementation for controlling and monitoring
@@ -36,7 +36,7 @@ class ModbusTCPClientInverter extends ModbusTCPClient
     /** Register controlling storage control mode */
     const REG_STORCTL_MOD = 40349;
 
-    
+
     /**
      * Reads the current battery status from the inverter.
      *

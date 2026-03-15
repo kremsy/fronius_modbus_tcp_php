@@ -16,8 +16,8 @@
  *  - Smart meter configured (optional)
  */
 
-use battery\fronius_modbus_tcp_php\ModbusTCPClientInverter;
-use battery\fronius_modbus_tcp_php\ModbusTCPClientSmartmeter;
+use battery\fronius_modbus_tcp_php\src\ModbusTCPClientInverter;
+use battery\fronius_modbus_tcp_php\src\ModbusTCPClientSmartmeter;
 
 include_once("ModbusTCPClient.php");
 include_once("ModbusTCPClientSmartmeter.php");

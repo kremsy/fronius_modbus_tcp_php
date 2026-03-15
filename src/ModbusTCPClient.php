@@ -1,6 +1,6 @@
 <?php
 
-namespace battery\fronius_modbus_tcp_php;
+namespace battery\fronius_modbus_tcp_php\src;
 
 use Exception;
 

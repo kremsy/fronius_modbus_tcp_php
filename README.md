@@ -1,8 +1,13 @@
-
-
 # Fronius Modbus TCP PHP
 
+![License](https://img.shields.io/github/license/YOUR_USERNAME/fronius-modbus-tcp-php)
+![PHP](https://img.shields.io/badge/php-%3E%3D7.4-blue)
+![GitHub stars](https://img.shields.io/github/stars/YOUR_USERNAME/fronius-modbus-tcp-php)
+![GitHub issues](https://img.shields.io/github/issues/YOUR_USERNAME/fronius-modbus-tcp-php)
+![Last commit](https://img.shields.io/github/last-commit/YOUR_USERNAME/fronius-modbus-tcp-php)
+
 A lightweight PHP library for interacting with **Fronius inverters and smart meters via Modbus TCP**.
+
 
 It allows you to:
 
@@ -88,7 +93,7 @@ example.php
 ## Connect to inverter and read battery status
 
 ```php
-use battery\fronius_modbus_tcp_php\ModbusTCPClientInverter;
+use battery\fronius_modbus_tcp_php\src\ModbusTCPClientInverter;
 
 include_once("ModbusTCPClient.php");
 include_once("ModbusTCPClientInverter.php");
@@ -149,7 +154,7 @@ $client->autoMode();
 # Read Grid Power from Smart Meter
 
 ```php
-use battery\fronius_modbus_tcp_php\ModbusTCPClientSmartmeter;
+use battery\fronius_modbus_tcp_php\src\ModbusTCPClientSmartmeter;
 
 $meter = new ModbusTCPClientSmartmeter("192.168.0.65");
 
