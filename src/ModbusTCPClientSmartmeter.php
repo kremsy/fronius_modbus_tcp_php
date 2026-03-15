@@ -1,6 +1,6 @@
 <?php
 
-namespace battery\fronius_modbus_tcp_php\src;
+namespace fronius_modbus_tcp_php\src;
 
 /**
  * Modbus client for reading data from a Fronius Smart Meter via Modbus TCP.

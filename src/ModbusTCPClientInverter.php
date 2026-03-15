@@ -1,6 +1,6 @@
 <?php
 
-namespace battery\fronius_modbus_tcp_php\src;
+namespace fronius_modbus_tcp_php\src;
 
 /**
  * Modbus client implementation for controlling and monitoring

@@ -16,13 +16,15 @@
  *  - Smart meter configured (optional)
  */
 
-use battery\fronius_modbus_tcp_php\src\ModbusTCPClientInverter;
-use battery\fronius_modbus_tcp_php\src\ModbusTCPClientSmartmeter;
+use fronius_modbus_tcp_php\src\ModbusTCPClientInverter;
+use fronius_modbus_tcp_php\src\ModbusTCPClientSmartmeter;
 
-include_once("ModbusTCPClient.php");
-include_once("ModbusTCPClientSmartmeter.php");
-include_once("ModbusTCPClientInverter.php");
-include_once("BatteryStatus.php");
+// Include the library files manually, TODO switch to composer auto-loader later
+include_once __DIR__ . '/src/ModbusTCPClient.php';
+include_once __DIR__ . '/src/ModbusTCPClientInverter.php';
+include_once __DIR__ . '/src/ModbusTCPClientSmartmeter.php';
+include_once __DIR__ . '/src/BatteryStatus.php';
+
 
 /**
  * IP address or hostname of the Fronius inverter.
