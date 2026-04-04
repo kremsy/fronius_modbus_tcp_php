@@ -38,9 +38,8 @@ The library was developed for **Fronius GEN24 inverters** and Fronius smart mete
 Examples:
 
 * Fronius GEN24
-* Fronius Symo GEN24
-* Fronius smart meter (slave ID `200`)
-* secondary smart meter (slave ID `201`)
+* Fronius Symo GEN24 / Primo Gen24 / Verto / Tauro
+* Fronius smart meters
 
 The battery power reading currently works **best with GEN24 systems**.
 
@@ -62,7 +61,7 @@ Smart Meter Slave ID: 200
 
 ---
 
-# Configuration on Fronius inverter
+Configuration on Fronius inverter:
 
 ![config.png](config.png)
 
@@ -100,7 +99,7 @@ example.php
 use fronius_modbus_tcp_php\src\ModbusTCPClientInverter;
 use fronius_modbus_tcp_php\src\ModbusTCPClientSmartmeter;
 
-// Include the library files manually, TODO switch to composer auto-loader later
+// Include the library files manually
 include_once __DIR__ . '/src/ModbusTCPClient.php';
 include_once __DIR__ . '/src/ModbusTCPClientInverter.php';
 include_once __DIR__ . '/src/ModbusTCPClientSmartmeter.php';

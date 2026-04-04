@@ -148,4 +148,30 @@ class BatteryStatus
                 return "unknown";
         }
     }
+
+    /**
+     * Returns a compact, human-readable summary of the battery status.
+     *
+     * This method formats key battery metrics into a single string,
+     * useful for logging, CLI output, or quick diagnostics.
+     *
+     * Included values:
+     * - State of charge (SOC)
+     * - Charge limit
+     * - Discharge limit
+     * - Current battery power
+     * - Charge status (human-readable)
+     *
+     * @return string Formatted summary string (e.g. "SOC: 75.0% | ChargeLimit: 100.00% | ...")
+     */
+    public function toSummaryString(): string {
+        return sprintf(
+            "SOC: %.1f%% | ChargeLimit: %.2f%% | DischargeLimit: %.2f%% | Power: %.0f W | Status: %s",
+            $this->stateOfCharge,
+            $this->chargeLimitPercent,
+            $this->dischargeLimitPercent,
+            $this->batteryPower,
+            $this->chargeStatus
+        );
+    }
 }

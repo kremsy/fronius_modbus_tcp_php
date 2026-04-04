@@ -91,13 +91,18 @@ class ModbusTCPClientInverter extends ModbusTCPClient
         $status->chargeStatus = BatteryStatus::decodeChargeStatus($chaSt);
 
         // Works only for GEN24 for now, can be improved to support all devices
-        $batPower = $this->readSingleRegister(self::REG_DC_POWER_3);
+        $batPower =  self::signed16($this->readSingleRegister(self::REG_DC_POWER_3));
         $dcwSf = $this->readSingleRegister(self::REG_DCW_SF);
         $scaleBat = pow(10, self::signed16($dcwSf));
 
-        //$batVoltage = $this->readSingleRegister(40314) / 100; //TODO constants and dynamic scaling
-        //$batCurrent = $this->readSingleRegister(40313) / 1000;
+        $batVoltage = $this->readSingleRegister(40314) / 100; //TODO constants and dynamic scaling
+        $batCurrent = $this->readSingleRegister(40313) / 1000;
         //$status->batteryPower = -$batVoltage * $batCurrent;
+        #var_dump($batPower);
+        #var_dump($batVoltage);
+        #var_dump($batCurrent);
+        #var_dump($this->readSingleRegister(40101));
+
 
         $status->batteryPower = $batPower * $scaleBat;
         return $status;
@@ -164,6 +169,24 @@ class ModbusTCPClientInverter extends ModbusTCPClient
         $this->write(self::REG_OUTWRTE, $pct);
         usleep(200000);
 
+        $this->write(self::REG_STORCTL_MOD, 3);
+    }
+
+
+    /**
+     * Limits the battery charge power to a specified percentage.
+     *
+     * This function writes the desired charge limit to the inverter register
+     * and then sets the storage control mode accordingly.
+     *
+     * @param float|int $percent The desired charge power limit as a percentage (0–100).
+     *                           Example: 50 means 50% charge power.
+     *
+     * @return void
+     */
+    public function limitChargePower($percent) {
+        $this->write(self::REG_INWRTE, $percent * 100);
+        usleep(200000);
         $this->write(self::REG_STORCTL_MOD, 3);
     }
 
