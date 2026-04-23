@@ -5,6 +5,7 @@ namespace fronius_modbus_tcp_php\src\solarweb_query_api;
 use DateTime;
 use DateTimeZone;
 use Exception;
+
 /**
  * This is just a first draft with some useful methods, will be improved in the future
  */
@@ -30,7 +31,7 @@ class SolarWebQueryApi
         );
 
         $url = "https://api.solarweb.com/swqapi/" . $endPoint;
-        var_dump($url);
+        //var_dump($url);
 
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
@@ -92,6 +93,37 @@ class SolarWebQueryApi
 
         //var_dump($energyData);
         return $average;
+    }
+
+    public function getForeCastTomorrow() {
+
+        $tz = new DateTimeZone('Europe/Vienna');
+
+        $start = new DateTime('tomorrow 0:00:00', $tz);
+        $end = new DateTime('tomorrow 23:59:00', $tz);
+
+        $from = $start->format('Y-m-d\TH:i:s');
+        $to = $end->format('Y-m-d\TH:i:s');
+
+        $endPoint = "pvsystems/{$this->pvSystemId}/weather/energyforecast?from={$from}&to={$to}";
+
+        $energyData = $this->solarWebApiGet($endPoint);
+
+        //If error, return -1
+        if (!$energyData || !property_exists($energyData, "data")) {
+            return -1;
+        }
+        $sum = 0;
+        foreach ($energyData->data as $entry) {
+            foreach ($entry->channels as $channel) {
+                if ($channel->channelName === 'EnergyExpected') {
+                    $sum += $channel->value;
+                }
+            }
+        }
+
+        return round($sum / 1000, 2);
+
     }
 
     public function getEnergyForecastFullDay() {

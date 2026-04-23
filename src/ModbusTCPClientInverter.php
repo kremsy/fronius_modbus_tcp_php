@@ -91,7 +91,7 @@ class ModbusTCPClientInverter extends ModbusTCPClient
         $status->chargeStatus = BatteryStatus::decodeChargeStatus($chaSt);
 
         // Works only for GEN24 for now, can be improved to support all devices
-        $batPower =  self::signed16($this->readSingleRegister(self::REG_DC_POWER_3));
+        $batPower =  $this->readSingleRegister(self::REG_DC_POWER_3);
         $dcwSf = $this->readSingleRegister(self::REG_DCW_SF);
         $scaleBat = pow(10, self::signed16($dcwSf));
 
@@ -102,7 +102,6 @@ class ModbusTCPClientInverter extends ModbusTCPClient
         #var_dump($batVoltage);
         #var_dump($batCurrent);
         #var_dump($this->readSingleRegister(40101));
-
 
         $status->batteryPower = $batPower * $scaleBat;
         return $status;

@@ -70,10 +70,18 @@ class BatteryManager
                         echo "SOC is below 12, stay in auto-mode \n";
                         $client->autoMode(); //TODO call only once
                         $autoModeSet = true;
-                    } else if ($batteryStatus->chargeLimitPercent != self::PRE_NOON_CHARGE_LIMIT_PERCENT) {
+                    } else if ($batteryStatus->stateOfCharge < 20) {
                         // Limit Battery Charge until 12:00 if enough sun is here
-                        $client->limitChargePower(self::PRE_NOON_CHARGE_LIMIT_PERCENT);
-                        $autoModeSet = false;
+                        if ($batteryStatus->chargeLimitPercent != self::PRE_NOON_CHARGE_LIMIT_PERCENT) {
+                            $client->limitChargePower(self::PRE_NOON_CHARGE_LIMIT_PERCENT);
+                            $autoModeSet = false;
+                        }
+                    } else {
+                        // Block Battery Charge until 12:00 if enough sun is here and SOC is high enough
+                        if ($batteryStatus->chargeLimitPercent != 0) {
+                            $client->limitChargePower(0);
+                            $autoModeSet = false;
+                        }
                     }
                 } else {
                     if (!$autoModeSet) {
